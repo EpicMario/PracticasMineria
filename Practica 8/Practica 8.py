@@ -23,18 +23,6 @@ def get_df() -> pd.DataFrame:
 
     return df
 
-def print_tabulate(df: pd.DataFrame):
-    print(tabulate(df, headers=df.columns, tablefmt="orgtbl"))
-
-
-def normalize_distribution(dist: np.array, n: int) -> np.array:
-    b = dist - min(dist) + 0.000001
-    c = (b / np.sum(b)) * n
-    return np.round(c)
-
-
-def create_distribution(mean: float, size: int) -> pd.Series:
-    return normalize_distribution(np.random.standard_normal(size), mean * size)
 
 def get_cmap(n, name="hsv"):
     """Returns a function that maps each index in 0, 1, ..., n-1 to a distinct
@@ -93,26 +81,7 @@ labels = [label for _, label in list_t]
 kn = k_nearest_neightbors(
     points,
     labels,
-    [np.array([100, 150]), np.array([1, 1]), np.array([1, 300]), np.array([80, 40])],
+    [np.array([900, 450]), np.array([1000, 1000]), np.array([40404, 30003]), np.array([80000, 403500])],
     5,
 )
 print(kn)
-
-
-# groups = [(20, 20, "grupo1"), (80, 40, "grupo2"), (200, 200, "grupo3")]
-# df = generate_df(groups, 50)
-# scatter_group_by("img/groups.png", df, "x", "y", "label")
-# list_t = [
-#     (np.array(tuples[0:1]), tuples[2])
-#     for tuples in df.itertuples(index=False, name=None)
-# ]
-# points = [point for point, _ in list_t]
-# labels = [label for _, label in list_t]
-
-# kn = k_nearest_neightbors(
-#     points,
-#     labels,
-#     [np.array([100, 150]), np.array([1, 1]), np.array([1, 300]), np.array([80, 40])],
-#     5,
-# )
-# print(kn)

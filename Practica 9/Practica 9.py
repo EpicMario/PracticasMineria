@@ -27,20 +27,6 @@ def get_df() -> pd.DataFrame:
     return df
 
 
-def print_tabulate(df: pd.DataFrame):
-    print(tabulate(df, headers=df.columns, tablefmt="orgtbl"))
-
-
-def normalize_distribution(dist: np.array, n: int) -> np.array:
-    b = dist - min(dist) + 0.000001
-    c = (b / np.sum(b)) * n
-    return np.round(c)
-
-
-def create_distribution(mean: float, size: int) -> pd.Series:
-    return normalize_distribution(np.random.standard_normal(size), mean * size)
-
-
 def get_cmap(n, name="hsv"):
     """Returns a function that maps each index in 0, 1, ..., n-1 to a distinct
     RGB color; the keyword argument name must be a standard mpl colormap name."""
